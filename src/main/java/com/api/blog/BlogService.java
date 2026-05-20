@@ -30,7 +30,16 @@ public class BlogService {
         return null;
     }
 
-    public List<BlogEntity> findAll() {
+    public List<BlogEntity> findAll(String category, String title) {
+        if (category != null && title != null) {
+            return blogRepository.findByCategoryAndTitle(category, title);
+        }
+        if (category != null) {
+            return blogRepository.findByCategory(category);
+        }
+        if (title != null) {
+            return blogRepository.findByTitle(title);
+        }
         return blogRepository.findAll();
     }
 

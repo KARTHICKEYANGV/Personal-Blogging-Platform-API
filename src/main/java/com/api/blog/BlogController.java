@@ -41,8 +41,11 @@ public class BlogController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<BlogEntity>> getAllBlogs() {
-        return new ResponseEntity<List<BlogEntity>>(blogService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<BlogEntity>> getAllBlogs(
+            @RequestParam (required = false) String category,
+            @RequestParam (required = false) String title
+    ) {
+        return new ResponseEntity<List<BlogEntity>>(blogService.findAll(category,title), HttpStatus.OK);
     }
 
 }
